@@ -5,65 +5,46 @@ aliases: [/announcements, /docs/announcements]
 weight: 50
 ---
 
-An announcement is a _regular Hugo page_ contained under the `announcements`
-section of a locale. This means that we leverage Hugo's builtin handling of page
-dates (future or expired), internationalization, and more, to automatically show
-or hide banners depending on the build date, determine banner ordering, handle
-fall back to English banners, etc.
+公告是包含在某个区域的 “公告” 部分下的一个_常规的 Hugo 页面_。这意味着我们利用 Hugo 对页面日期（未来或已过期）、国际化等方面的内置处理功能，
+来根据构建日期自动显示或隐藏横幅，确定横幅的排序，并处理回退到英文横幅等情况。
+> 公告目前仅被用作横幅。我们最终_有可能……_
+> 也会稍微多支持更通用一些的公告。
 
-> Announcements are currently used as banners only. We _might_ eventually
-> support slightly more general announcements as well.
+### 创建一则公告 {#creating-an-announcement}
 
-### Creating an announcement
-
-To add a new announcement, create an announcement markdown file under the
-`announcements` folder of your localization using the following command:
+要添加一条新的公告，请使用以下命令在本地化项目的 `announcements` 文件夹下创建一个公告的 Markdown 文件。:
 
 ```sh
 hugo new --kind announcement content/YOUR-LOCALE/announcements/announcement-file-name.md
 ```
 
-Adjust according to your desired locale and file name. Add the announcement text
-as the body of the page.
+根据你期望的区域设置和文件名进行调整。将公告文本添加为页面的主体内容。
 
-> For banners, the announcement body should be a short phrase.
+> 对于横幅而言，公告的主体内容应该是一个简短的短语。
 
-{{% alert title="For localizations" %}}
+{{% alert title="对于本地化来说" %}}
 
-If you are creating a **locale specific announcement override**, make sure that
-you use the **same filename** as the English language announcement.
+如果你正在创建一个**特定区域的公告覆盖内容**，请确保你使用与英文公告**相同的文件名**。
 
 {{% /alert %}}
 
-### Announcement list
+### 公告列表 {#announcement-list}
 
-Any given announcement will appear in a site build when the build date falls
-between the `date` and `expiryDate` fields of the announcement. When those
-fields are missing they are assumed to be "now" and "forever", respectively.
+当构建日期处于公告的 `date` 字段和 `expiryDate` 字段之间时，任何给定的公告都会在网站构建中显示。
+如果这些字段缺失，那么 “日期” 字段将被假定为 “当前时刻”，“到期日期” 字段将被假定为 “永远（无到期时间）”。
 
-Announcements will appear in the standard page order as determined using Hugo's
-[Regular pages](https://gohugo.io/methods/site/regularpages/) function. That is,
-the "lightest" announcements (by `weight`) will appear first; when weights are
-the same or unspecified, the most recent announcements (by `date`) will appear
-first, etc.
+公告将按照由 Hugo 的 [Regular pages] 函数所确定的标准页面顺序显示。也就是说，（按 `weight` 来算）“权重最小”的公告将最先显示。
+当权重相同或者未指定权重时，（按 `date` 来算）最新的公告将最先显示，诸如此类。
 
-So, if you want to force an announcement to the top, use a negative `weight` in
-the front matter.
+所以，如果你想让一则公告显示在最上方，就在前置内容中使用一个负的 `weight` 值。
 
-If you find a bug or a problem with the content of this repository, or you would
-like to request an enhancement, [create an issue][new-issue].
+如果你发现这个仓库的内容存在错误或问题，或者你希望请求进行功能增强，请 [创建一个 issue][new-issue]。
 
-If you discover a security issue, read the
-[Security Policy](https://github.com/open-telemetry/opentelemetry.io/security/policy)
-before opening an issue.
+如果你发现了一个安全问题，在提交问题之前，请阅读[安全策略](https://github.com/open-telemetry/opentelemetry.io/security/policy)。
 
-Before reporting a new issue, make sure that the issue was not already reported
-or fixed by searching through our
-[issues list](https://github.com/open-telemetry/opentelemetry.io/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc).
+在报告新问题之前，请务必通过查阅我们的 [issue 列表](https://github.com/open-telemetry/opentelemetry.io/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)，确认该问题尚未被报告过或已得到解决。
 
-When creating a new issue, include a short, meaningful title and a clear
-description. Add as much relevant information as you can, and, if possible, a
-test case.
+在创建新问题时，添加一个简短且有意义的标题和清晰的描述。尽可能多地添加相关信息，并且如果可能的话，附上一个测试用例。
 
 [new-issue]:
   https://github.com/open-telemetry/opentelemetry.io/issues/new/choose
